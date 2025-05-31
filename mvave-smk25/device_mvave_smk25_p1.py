@@ -4,24 +4,14 @@
 from helpers import on_btn_push, on_knob_rotation
 from transport import start, stop, record
 from channels import setChannelVolume, channelCount
-
-PLAY_BTN = 102
-STOP_BTN = 103
-REC_BTN = 104
-
-KNOB1 = 20
-KNOB2 = 21
-KNOB3 = 22
-KNOB4 = 23
-KNOB5 = 24
-KNOB6 = 25
-KNOB7 = 26
-KNOB8 = 27
+from midi_codes import *
 
 ACTION_TABLE = {
+    # Buttons
     PLAY_BTN: lambda event: on_btn_push(event, start),
     STOP_BTN: lambda event: on_btn_push(event, stop),
     REC_BTN: lambda event: on_btn_push(event, record),
+    # Knobs
     KNOB1: lambda event: on_knob_rotation(
         event, lambda val: setChannelVolume(0, val), channelCount() >= 1
     ),
